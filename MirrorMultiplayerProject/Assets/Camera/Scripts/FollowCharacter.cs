@@ -12,15 +12,19 @@ public class FollowCharacter : MonoBehaviour
 
     private void Update()
     {
-        Follow();       
+        FollowPosition();
+        FollowRotation();
     }
 
-    private void Follow()
+    private void FollowPosition()
     {
         Vector3 positionOffset = new Vector3(_xOffset, _yOffset, _zOffset);
         transform.position = _character.transform.TransformPoint(positionOffset);
+    }
 
-        Vector3 rotationOffset = new Vector3(_xRotationOffset, _character.transform.eulerAngles.y 
+    private void FollowRotation()
+    {
+        Vector3 rotationOffset = new Vector3(_xRotationOffset, _character.transform.eulerAngles.y
             + _yRotationOffset, _zRotationOffset);
         transform.rotation = Quaternion.Euler(rotationOffset);
     }
