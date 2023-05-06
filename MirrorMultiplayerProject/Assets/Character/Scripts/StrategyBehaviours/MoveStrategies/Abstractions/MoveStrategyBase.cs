@@ -14,5 +14,5 @@ public abstract class MoveStrategyBase : IMovable
         _characterRigidbody = characterRigidbody;
     }
 
-    abstract public void Move(float speed, Vector3 direction);
+    abstract public void Move(float speed, Vector2 direction);
 }
