@@ -10,7 +10,6 @@ public class RunStrategy : MoveStrategyBase
 
     public override void Move(float speed, Vector3 direction)
     {
-        Debug.Log(direction);
         _characterAnimator.SetFloat(xMoveDirection, direction.x);
         _characterAnimator.SetFloat(zMoveDirection, direction.z);
         _characterRigidbody.velocity = direction * speed;
