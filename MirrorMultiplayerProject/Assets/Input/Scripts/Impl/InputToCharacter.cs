@@ -31,13 +31,13 @@ public class InputToCharacter : MonoBehaviour
     private void Update()
     {
         ReadInput();
-        Rotate();
-        Dash();       
+        Rotate();           
     }
 
     private void FixedUpdate()
     {
-        Move();      
+        Move();
+        Dash();
     }
 
     private void ReadInput()
