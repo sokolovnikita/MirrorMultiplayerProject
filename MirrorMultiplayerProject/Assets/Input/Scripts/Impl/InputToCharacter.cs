@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InputToCharacter : MonoBehaviour
@@ -8,6 +9,7 @@ public class InputToCharacter : MonoBehaviour
     private NewInputSystem _newInputSystem;
 
     private Vector2 _moveDirection = new Vector2();
+    private float _rotation = 0;
 
     private void Awake()
     {
@@ -39,6 +41,7 @@ public class InputToCharacter : MonoBehaviour
     private void ReadInput()
     {
         _moveDirection = _newInputSystem.Player.Move.ReadValue<Vector2>();
+        _rotation = _newInputSystem.Player.Rotate.ReadValue<Vector2>().x;
     }
 
     private void Move()
@@ -48,6 +51,6 @@ public class InputToCharacter : MonoBehaviour
 
     private void Rotate()
     {
-        _controllableObject.Rotate();
+        _controllableObject.Rotate(_rotation);
     }   
 }
