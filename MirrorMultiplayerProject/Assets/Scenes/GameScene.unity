@@ -528,12 +528,24 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1446981473, guid: 824a08a463f05cd41baa95620782a088, type: 3}
+      propertyPath: _dashTime
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446981473, guid: 824a08a463f05cd41baa95620782a088, type: 3}
+      propertyPath: _dashRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446981473, guid: 824a08a463f05cd41baa95620782a088, type: 3}
       propertyPath: _moveSpeed
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1446981473, guid: 824a08a463f05cd41baa95620782a088, type: 3}
       propertyPath: _rotateSpeed
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446981473, guid: 824a08a463f05cd41baa95620782a088, type: 3}
+      propertyPath: _dashCoolDown
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1446981474, guid: 824a08a463f05cd41baa95620782a088, type: 3}
       propertyPath: m_Constraints

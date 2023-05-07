@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class InputToCharacter : MonoBehaviour
@@ -31,11 +32,12 @@ public class InputToCharacter : MonoBehaviour
     {
         ReadInput();
         Rotate();
+        Dash();       
     }
 
     private void FixedUpdate()
     {
-        Move();     
+        Move();      
     }
 
     private void ReadInput()
@@ -53,4 +55,12 @@ public class InputToCharacter : MonoBehaviour
     {
         _controllableObject.Rotate(_rotation);
     }   
+
+    private void Dash()
+    {
+        if (_newInputSystem.Player.Dash.IsPressed())
+        {
+            _controllableObject.Dash(_moveDirection);
+        }       
+    }
 }
