@@ -8,10 +8,11 @@ public class RunStrategy : MoveStrategyBase
 
     }
 
-    public override void Move(float speed, Vector2 direction)
-    {
-        _characterAnimator.SetFloat(xMoveDirection, direction.x);
-        _characterAnimator.SetFloat(zMoveDirection, direction.y);
-        _characterRigidbody.velocity = direction * speed;
+    public override void StrategyMove(float speed, Vector2 direction)
+    {    
+        Vector3 newDirection = new Vector3(direction.x, 0, direction.y);
+        newDirection = Quaternion.AngleAxis(_characterRigidbody.transform.eulerAngles.y, 
+            Vector3.up) * newDirection;
+        _characterRigidbody.velocity = newDirection * speed;
     }
 }

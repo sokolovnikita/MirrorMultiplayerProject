@@ -14,5 +14,17 @@ public abstract class MoveStrategyBase : IMovable
         _characterRigidbody = characterRigidbody;
     }
 
-    abstract public void Move(float speed, Vector2 direction);
+    public void Move(float speed, Vector2 direction)
+    {
+        BaseMove(direction);
+        StrategyMove(speed, direction);
+    }   
+
+    private void BaseMove(Vector2 direction)
+    {
+        _characterAnimator.SetFloat(xMoveDirection, direction.x);
+        _characterAnimator.SetFloat(zMoveDirection, direction.y);
+    }
+
+    abstract public void StrategyMove(float speed, Vector2 direction);
 }

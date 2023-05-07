@@ -4,5 +4,5 @@ public interface IControllable
 {
     public void Move(Vector2 direction);
 
-    public void Rotate();
+    public void Rotate(float rotation);
 }
