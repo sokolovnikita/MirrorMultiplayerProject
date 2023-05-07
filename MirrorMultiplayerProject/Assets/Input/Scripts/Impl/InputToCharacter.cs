@@ -11,8 +11,6 @@ public class InputToCharacter : MonoBehaviour
 
     private Vector2 _moveDirection = new Vector2();
     private float _rotation = 0;
-    private bool _isDashEnable = true;
-    private bool _isDashing = false;
 
     private void Awake()
     {
@@ -33,19 +31,13 @@ public class InputToCharacter : MonoBehaviour
     private void Update()
     {
         ReadInput();
-        if (!_isDashing)
-        {           
-            Rotate();
-            Dash();
-        }            
+        Rotate();
+        Dash();       
     }
 
     private void FixedUpdate()
     {
-        if (!_isDashing)
-        {
-            Move();
-        }         
+        Move();      
     }
 
     private void ReadInput()
@@ -66,25 +58,9 @@ public class InputToCharacter : MonoBehaviour
 
     private void Dash()
     {
-        if (_isDashEnable && _newInputSystem.Player.Dash.IsPressed())
+        if (_newInputSystem.Player.Dash.IsPressed())
         {
-            StartCoroutine(Dashing());
-            StartCoroutine(DashCooldDown());           
-        }
-    }
-    
-    private IEnumerator Dashing()
-    {
-        _isDashing = true;
-        _controllableObject.Dash(_moveDirection);
-        yield return new WaitForSeconds(_controllableObject.DashTime);
-        _isDashing = false;
-    }
-
-    private IEnumerator DashCooldDown()
-    {
-        _isDashEnable = false;
-        yield return new WaitForSeconds(_controllableObject.DashCoolDown);
-        _isDashEnable = true;
+            _controllableObject.Dash(_moveDirection);
+        }       
     }
 }

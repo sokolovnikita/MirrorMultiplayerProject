@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public abstract class CharacterBase : MonoBehaviour, IControllable
 {
@@ -14,6 +16,9 @@ public abstract class CharacterBase : MonoBehaviour, IControllable
     protected IRotateable _rotateStrategy;
     protected IDashable _dashStrategy;
 
+    private bool _isDashEnable = true;
+    private bool _isDashing = false;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -21,34 +26,44 @@ public abstract class CharacterBase : MonoBehaviour, IControllable
         InitStrategies();
     }
 
-    public float DashCoolDown
-    {
-        get { return _dashCoolDown; }
-    }
-
-    public float DashForce
-    {
-        get { return _dashForce; }
-    }
-    
-    public float DashTime
-    {
-        get { return _dashTime; }
-    }
-
     public void Move(Vector2 direction)
     {
-        _moveStrategy.Move(_moveSpeed, direction);
+        if (!_isDashing)
+        {
+            _moveStrategy.Move(_moveSpeed, direction);
+        }       
     }
 
     public void Rotate(float rotation)
     {
-        _rotateStrategy.Rotate(_rotateSpeed, rotation);
+        if (!_isDashing)
+        {
+            _rotateStrategy.Rotate(_rotateSpeed, rotation);
+        }      
     }
 
     public void Dash(Vector2 direction)
     {
+        if (_isDashEnable)
+        {
+            StartCoroutine(Dashing(direction));
+            StartCoroutine(DashCoolDown());
+        }
+    }
+
+    private IEnumerator Dashing(Vector2 direction)
+    {
+        _isDashing = true;
         _dashStrategy.Dash(_dashForce, direction);
+        yield return new WaitForSeconds(_dashTime);
+        _isDashing = false;
+    }
+
+    private IEnumerator DashCoolDown()
+    {
+        _isDashEnable = false;
+        yield return new WaitForSeconds(_dashCoolDown);
+        _isDashEnable = true;
     }
 
     protected abstract void InitStrategies();  
