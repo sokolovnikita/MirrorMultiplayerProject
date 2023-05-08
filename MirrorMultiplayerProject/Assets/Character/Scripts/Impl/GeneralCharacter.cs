@@ -6,6 +6,8 @@ public class GeneralCharacter : CharacterBase
     {
         _moveStrategy = new RunStrategy(_animator, _rigidbody);
         _rotateStrategy = new GeneralRotateStrategy(_rigidbody);
-        _dashStrategy = new GeneralDashStrategy(_rigidbody);
+        _dashStrategy = new GeneralDashStrategy(this);
+        _takeDamageStrategy = new GeneralTakeDamageStrategy(this, _renderer);
+        _hitStrategy = new GeneralHitStrategy(this);
     }
 }

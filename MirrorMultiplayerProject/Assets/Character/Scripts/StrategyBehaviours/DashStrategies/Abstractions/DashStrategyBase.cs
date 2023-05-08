@@ -2,15 +2,17 @@ using UnityEngine;
 
 public abstract class DashStrategyBase : IDashable
 {
-    protected Rigidbody _characterRigidbody;
+    protected CharacterBase _character;
 
-    public DashStrategyBase(Rigidbody characterRigidbody)
+    public DashStrategyBase(CharacterBase character)
     {
-        _characterRigidbody = characterRigidbody;
+        _character = character;
     }
 
     public void Dash(float dashTime, Vector2 direction)
     {
+        if (!_character.IsDashEnable)
+            return;
         StrategyDash(dashTime, direction);
     }
 
