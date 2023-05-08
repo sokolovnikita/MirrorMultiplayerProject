@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TakeDamageStrategyBase : MonoBehaviour
+public abstract class TakeDamageStrategyBase : ITakeDamageable
 {
-    // Start is called before the first frame update
-    void Start()
+    protected CharacterBase _character;
+    protected Renderer _renderer;
+
+    public TakeDamageStrategyBase(CharacterBase character, Renderer renderer)
     {
-        
+        _character = character;
+        _renderer = renderer;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage() 
     {
-        
+        StrategyTakeDamage();
     }
+
+    protected abstract void StrategyTakeDamage();
 }
